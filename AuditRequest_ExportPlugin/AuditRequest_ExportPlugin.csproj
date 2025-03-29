@@ -14,12 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataRequestPipeline\DataRequestPipeline.DataContracts\DataRequestPipeline.DataContracts.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Reference Include="AESEncryptionEngine">
       <HintPath>AESEncryptionEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="DataRequestPipeline.DataContracts">
+      <HintPath>..\..\..\DataRequestPipeline.DataContracts.dll</HintPath>
     </Reference>
   </ItemGroup>
 
