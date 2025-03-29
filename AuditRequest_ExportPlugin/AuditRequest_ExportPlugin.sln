@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35818.85 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditRequest_ExportPlugin", "AuditRequest_ExportPlugin.csproj", "{520467E7-0A77-C7EC-066B-25A61C3F4630}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditRequest_RequestPlugin", "..\AuditRequest_RequestPlugin\AuditRequest_RequestPlugin.csproj", "{D15DC2BC-21FB-72FF-571D-17D1541699A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{520467E7-0A77-C7EC-066B-25A61C3F4630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{520467E7-0A77-C7EC-066B-25A61C3F4630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{520467E7-0A77-C7EC-066B-25A61C3F4630}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{520467E7-0A77-C7EC-066B-25A61C3F4630}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D15DC2BC-21FB-72FF-571D-17D1541699A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D15DC2BC-21FB-72FF-571D-17D1541699A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D15DC2BC-21FB-72FF-571D-17D1541699A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D15DC2BC-21FB-72FF-571D-17D1541699A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {99B92571-5D93-48BE-BEAC-821F240614A9}
+	EndGlobalSection
+EndGlobal

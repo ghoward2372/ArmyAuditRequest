@@ -1,0 +1,8 @@
+{
+  "connectionString": "Server=yourServer;Database=yourDatabase;User Id=yourUser;Password=yourPassword;",
+  "sqlFiles": [
+    "Scripts/Script1.sql",
+    "Scripts/Script2.sql",
+    "Scripts/Script3.sql"
+  ]
+}
