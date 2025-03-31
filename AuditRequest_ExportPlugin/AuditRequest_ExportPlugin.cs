@@ -8,7 +8,7 @@ using System.Text.Json;
 namespace ExportPlugins
 {
     [Export(typeof(IExportPlugin))]
-    public class ExportPluginA : IExportPlugin
+    public class ArmyAuditRequest_PerformRequestPlugin : IExportPlugin
     {
         public async Task ExecuteAsync(ExportContext context)
         {

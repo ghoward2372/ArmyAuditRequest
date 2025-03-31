@@ -8,7 +8,7 @@ using System.Text.Json.Serialization;
 namespace RequestPlugins
 {
     [Export(typeof(IPerformRequestPlugin))]
-    public class RequestPluginSQL : IPerformRequestPlugin
+    public class ArmyAuditRequest_PerformRequestPlugin : IPerformRequestPlugin
     {
         public async Task ExecuteAsync(RequestContext context)
         {
@@ -16,7 +16,7 @@ namespace RequestPlugins
 
             // Define the path to the JSON config file.
             // Adjust this path as necessary; here we assume it's in the same folder as the DLL.
-            string configFilePath = "sqlRequestConfig.json";
+            string configFilePath = "plugins\\PerformRequest\\sqlRequestConfig.json";
             if (!File.Exists(configFilePath))
             {
                 Logger.Log("SQL Request Config not found!");
@@ -52,7 +52,8 @@ namespace RequestPlugins
 
                 if (!File.Exists(sqlFile))
                 {
-                    throw new FileNotFoundException("SQL file not found", sqlFile);
+                    Console.WriteLine($"{Path.GetFullPath(sqlFile)} does not exist");
+                    throw new FileNotFoundException("SQL file not found", Path.GetFullPath(sqlFile));
                 }
                 Logger.Log("AuditRequestPlugin : Executing " + sqlFile);
                 string sqlCommandText = await File.ReadAllTextAsync(sqlFile);

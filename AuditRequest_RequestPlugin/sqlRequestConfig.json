@@ -1,8 +1,6 @@
 {
-  "connectionString": "Server=yourServer;Database=yourDatabase;User Id=yourUser;Password=yourPassword;",
+  "connectionString": "Data Source=Zeus\\SQLEXPRESS; Initial Catalog=TestDatabase; Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False;",
   "sqlFiles": [
-    "Scripts/Script1.sql",
-    "Scripts/Script2.sql",
-    "Scripts/Script3.sql"
+    "plugins\\PerformRequest\\Scripts\\Insert.sql"
   ]
 }

@@ -1,0 +1,1 @@
+Insert into PersonInfo values ('012', 'JAmes', 'Greg', '1234', 'LT', 'WAZNAA', '1/2/23','AH-64');

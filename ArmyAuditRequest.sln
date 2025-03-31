@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35818.85 d17.13
+VisualStudioVersion = 17.13.35818.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditRequest_ExportPlugin", "AuditRequest_ExportPlugin\AuditRequest_ExportPlugin.csproj", "{7F3A8280-B331-BBD8-47CD-A41B5120D16D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuditRequest_RequestPlugin", "AuditRequest_RequestPlugin\AuditRequest_RequestPlugin.csproj", "{6A1A4E8B-E5AD-E458-C36A-71143825A7C2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArmyAuditRequest_PerformRequestPlugin", "AuditRequest_RequestPlugin\ArmyAuditRequest_PerformRequestPlugin.csproj", "{6A1A4E8B-E5AD-E458-C36A-71143825A7C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
