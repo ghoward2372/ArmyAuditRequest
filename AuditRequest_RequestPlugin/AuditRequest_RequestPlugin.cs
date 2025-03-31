@@ -12,13 +12,14 @@ namespace RequestPlugins
     {
         public async Task ExecuteAsync(RequestContext context)
         {
-            Console.WriteLine("RequestPluginSQL: Starting SQL execution stage...");
+            Console.WriteLine("AuditRequestPlugin: Starting SQL execution stage...");
 
             // Define the path to the JSON config file.
             // Adjust this path as necessary; here we assume it's in the same folder as the DLL.
             string configFilePath = "sqlRequestConfig.json";
             if (!File.Exists(configFilePath))
             {
+                Logger.Log("SQL Request Config not found!");
                 throw new FileNotFoundException("SQL Request config file not found.", configFilePath);
             }
 
@@ -41,15 +42,19 @@ namespace RequestPlugins
                 throw new Exception("No connection string provided in config or context.");
             }
 
+            Logger.Log("Connection String : " + connectionString);
+
             // Execute each SQL file in the order specified.
             foreach (var sqlFile in config.SqlFiles)
             {
-                Console.WriteLine($"RequestPluginSQL: Executing SQL file: {sqlFile}");
+                Console.WriteLine($"AuditRequestPlugin: Executing SQL file: {sqlFile}");
+
+
                 if (!File.Exists(sqlFile))
                 {
                     throw new FileNotFoundException("SQL file not found", sqlFile);
                 }
-
+                Logger.Log("AuditRequestPlugin : Executing " + sqlFile);
                 string sqlCommandText = await File.ReadAllTextAsync(sqlFile);
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -59,20 +64,21 @@ namespace RequestPlugins
                     {
                         command.CommandTimeout = 0; // Optional: disable timeout if needed.
                         int rowsAffected = await command.ExecuteNonQueryAsync();
-                        Console.WriteLine($"RequestPluginSQL: Executed {sqlFile}. Rows affected: {rowsAffected}");
+                        Console.WriteLine($"AuditRequestPlugin: Executed {sqlFile}. Rows affected: {rowsAffected}");
+                        Logger.Log($"AuditRequestPlugin: Executed {sqlFile}. Rows affected: {rowsAffected}");
                     }
                 }
             }
 
-            Console.WriteLine("RequestPluginSQL: All SQL files executed successfully.");
+            Console.WriteLine("AuditRequestPlugin: All SQL files executed successfully.");
         }
 
         public async Task RollbackAsync(RequestContext context)
         {
-            Console.WriteLine("RequestPluginSQL: Rolling back SQL execution...");
+            Console.WriteLine("AuditRequestPlugin: Rolling back SQL execution...");
             // Add rollback logic here (e.g., dropping tables or reverting changes)
             await Task.Delay(250); // Simulate asynchronous rollback work.
-            Console.WriteLine("RequestPluginSQL: Rollback complete.");
+            Console.WriteLine("AuditRequestPlugin: Rollback complete.");
         }
     }
 

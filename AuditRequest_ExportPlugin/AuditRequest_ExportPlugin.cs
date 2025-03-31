@@ -12,6 +12,7 @@ namespace ExportPlugins
     {
         public async Task ExecuteAsync(ExportContext context)
         {
+            Logger.Log("AuditRequestExportPlugin : Starting...");
             // Parse command line options.
             string configFile = null;
             CAFRSAESEncryptionEngine m_EncryptionEngine = new CAFRSAESEncryptionEngine();
@@ -45,7 +46,7 @@ namespace ExportPlugins
                     Console.WriteLine("-------------------------------------------------");
                     Console.WriteLine("Processing database with connection string:");
                     Console.WriteLine(db.ConnectionString);
-
+                    Logger.Log($"AuditRequestExportPlugin : Decrpytion and Exporting Database : {db.ConnectionString}");
                     // Iterate through each table within the current database.
                     foreach (var table in db.Tables)
                     {
@@ -58,6 +59,11 @@ namespace ExportPlugins
                         Console.WriteLine("Table: " + table.TableName);
                         Console.WriteLine("Output File: " + table.OutputFile);
                         Console.WriteLine("Query: " + query);
+
+                        Logger.Log("-------------------------------------------------");
+                        Logger.Log("Table: " + table.TableName);
+                        Logger.Log("Output File: " + table.OutputFile);
+                        Logger.Log("Query: " + query);
 
                         ProcessDatabaseTable(db, table, m_EncryptionEngine);
 
@@ -94,7 +100,7 @@ namespace ExportPlugins
 
             Console.WriteLine("Processing table: " + tableConfig.TableName);
             Console.WriteLine("Using query: " + query);
-
+            Logger.Log("Exporting Table : " + tableConfig.TableName);
             List<string> errorLog = new List<string>();
             List<bool> decryptionEnabledColumns = new List<bool>();
 
@@ -178,6 +184,7 @@ namespace ExportPlugins
                             string inputRow = string.Join(",", inputColumns);
                             string outputRow = string.Join(",", outputColumns);
                             Console.WriteLine($"Row {rowNumber}: INPUT - {inputRow} OUTPUT - {outputRow}");
+                            Logger.Log($"Row {rowNumber}: INPUT - {inputRow} OUTPUT - {outputRow}");
 
                             writer.WriteLine(outputRow);
                             rowNumber++;
@@ -187,21 +194,27 @@ namespace ExportPlugins
 
                 if (errorLog.Count > 0)
                 {
+
                     Console.WriteLine("Errors encountered while processing table: " + tableConfig.TableName);
+                    Logger.Log("Errors encountered while processing table: " + tableConfig.TableName);
                     foreach (var error in errorLog)
                     {
                         Console.WriteLine(error);
+                        Logger.Log(error);
                     }
                 }
                 else
                 {
                     Console.WriteLine("No decryption errors encountered for table: " + tableConfig.TableName);
+                    Logger.Log("No decryption errors encountered for table: " + tableConfig.TableName);
                 }
                 Console.WriteLine("Output written to: " + tableConfig.OutputFile);
+                Logger.Log("Output written to: " + tableConfig.OutputFile);
             }
             catch (Exception ex)
             {
                 Console.WriteLine("An error occurred processing table " + tableConfig.TableName + ": " + ex.Message);
+                Logger.Log("An error occurred processing table " + tableConfig.TableName + ": " + ex.Message);
             }
         }
         /// <summary>
@@ -222,7 +235,9 @@ namespace ExportPlugins
             }
             catch (Exception ex)
             {
+                Logger.Log("Decryption Failed (Note this may be expected) : " + ex.Message);
                 throw new Exception("Decryption failed: " + ex.Message);
+
             }
         }
 
